@@ -1,0 +1,62 @@
+# Delta Kernel Mods
+# + (Spectrum) Profiles Support
+
+on early-init
+    # Zzzz
+
+on init
+    # Zzzz
+
+on post-fs
+    # Zzzz
+
+on property:dev.bootcomplete=1
+
+   # according to Qcom this legacy value improves first launch latencies
+   # stock value is 512k
+   # from franciscofranco
+   setprop dalvik.vm.heapminfree 2m
+
+   # TCP Congestion Alg.
+   write /proc/sys/net/ipv4/tcp_congestion_control westwood
+
+   # Default Wakelock Block List
+   # write /sys/class/misc/boeffla_wakelock_blocker/wakelock_blocker wlan_pno_wl;wlan_ipa;wcnss_filter_lock;[timerfd];hal_bluetooth_lock;IPA_WS;sensor_ind;wlan;netmgr_wl;qcom_rx_wakelock;wlan_wow_wl;wlan_extscan_wl;
+
+   # Disabled Sleep
+   write /sys/power/autosleep mem
+
+   # Thermals
+   write /sys/class/thermal/thermal_message/sconfig 10
+
+   # Z-Ram
+   write /dev/block/zram0 swapoff
+   write /sys/block/zram0/reset 1
+   write /sys/block/zram0/disksize 0
+
+   # Spectrum / Performance Tweaks
+   # Set default profile on first boot
+   setprop persist.spectrum.profile 0
+   # Enable Spectrum support
+   setprop spectrum.support 1
+   # Add kernel name
+   setprop persist.spectrum.kernel Delta
+
+   # Delta Inits + Special Powers
+   exec u:r:magisk:s0 root root -- /sbin/init.special_power.sh
+
+   # 0. Balanced (default)
+   on property:persist.spectrum.profile=0
+   exec u:r:magisk:s0 root root -- /sbin/profile.balance.sh
+
+   # 1. Performance
+   on property:persist.spectrum.profile=1
+   exec u:r:magisk:s0 root root -- /sbin/profile.performance.sh
+
+   # 2. Battery
+   on property:persist.spectrum.profile=2
+   exec u:r:magisk:s0 root root -- /sbin/profile.battery.sh
+
+   # 3. Gaming
+   on property:persist.spectrum.profile=3
+   exec u:r:magisk:s0 root root -- /sbin/profile.gaming.sh
