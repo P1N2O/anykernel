@@ -18,10 +18,12 @@ chmod -R 644 /tmp/anykernel/ramdisk/fstab.qcom;
 exec_util "cp -af /tmp/anykernel/ramdisk/fstab.qcom /vendor/etc/"
 rm $ramdisk/fstab.qcom
 # Copy modifiede thermals for less agressive throttling
-ui_print " " "Modifying stock thermals to be less agressive...";
-chmod -R 644 /tmp/anykernel/mods/thermal-engine;
-chmod -R 644 /tmp/anykernel/mods/thermal-engine.conf;
-exec_util "cp -af /tmp/anykernel/mods/thermal-engine /vendor/etc/"
-exec_util "cp -af /tmp/anykernel/mods/thermal-engine.conf /vendor/etc/"
+ui_print " " "Modifying stock thermal limits...";
+chmod -R 644 /tmp/anykernel/mods/thermals/thermal-engine.conf;
+chmod -R 644 /tmp/anykernel/mods/thermals/thermal-engine-sdm845.conf;
+chmod -R 644 /tmp/anykernel/mods/thermals/thermal-engine-sdm845-sgame.conf;
+exec_util "cp -af /tmp/anykernel/mods/thermals/thermal-engine.conf /vendor/etc/"
+exec_util "cp -af /tmp/anykernel/mods/thermals/thermal-engine-sdm845.conf /vendor/etc/"
+exec_util "cp -af /tmp/anykernel/mods/thermals/thermal-engine-sdm845-sgame.conf /vendor/etc/"
 # Unmount vendor if mounted : End Mods
 umount /vendor || true
