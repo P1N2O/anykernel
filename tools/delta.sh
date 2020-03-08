@@ -17,13 +17,8 @@ ui_print " " "Adding F2FS mount points (data & cache)...";
 chmod -R 644 /tmp/anykernel/ramdisk/fstab.qcom;
 exec_util "cp -af /tmp/anykernel/ramdisk/fstab.qcom /vendor/etc/"
 rm $ramdisk/fstab.qcom
-# Copy modifiede thermals for less agressive throttling
-ui_print " " "Modifying stock thermal limits...";
-chmod -R 644 /tmp/anykernel/mods/thermals/thermal-engine.conf;
-chmod -R 644 /tmp/anykernel/mods/thermals/thermal-engine-sdm845.conf;
-chmod -R 644 /tmp/anykernel/mods/thermals/thermal-engine-sdm845-sgame.conf;
-exec_util "cp -af /tmp/anykernel/mods/thermals/thermal-engine.conf /vendor/etc/"
-exec_util "cp -af /tmp/anykernel/mods/thermals/thermal-engine-sdm845.conf /vendor/etc/"
-exec_util "cp -af /tmp/anykernel/mods/thermals/thermal-engine-sdm845-sgame.conf /vendor/etc/"
+# Place decoy thermal-engine
+chmod -R 644 /tmp/anykernel/mods/thermal/*;
+exec_util "cp -af /tmp/anykernel/mods/thermal/decoy /vendor/etc/thermal-engine-sdm845-extreme.conf"
 # Unmount vendor if mounted : End Mods
 umount /vendor || true

@@ -1,7 +1,7 @@
 #!/system/bin/sh
 
 # Thermals permissions reset
-chmod 644 /sys/class/thermal/thermal_message/sconfig
+# chmod 644 /sys/class/thermal/thermal_message/sconfig
 
 # Scrolling Cache
 setprop persist.sys.scrollingcache 1
@@ -43,15 +43,15 @@ setprop TapInterval 1ms
 setprop TapSlop 1px
 
 # Disable GooglePlay Wakelocks
-pm enable 'com.google.android.gms/.update.SystemUpdateService'
-pm enable 'com.google.android.gms/com.google.android.gms.analytics.service.AnalyticsService'
-pm enable 'com.google.android.gms/com.google.android.gms.analytics.AnalyticsService'
-pm enable 'com.google.android.gms/com.google.android.gms.analytics.AnalyticsTaskService'
-pm enable 'com.google.android.gms/com.google.android.gms.measurement.AppMeasurementJobService'
-pm enable 'com.google.android.syncadapters.contacts/com.google.android.gms.analytics.AnalyticsJobService'
-pm enable 'com.google.android.syncadapters.contacts/com.google.android.gms.analytics.AnalyticsService'
-pm enable 'com.google.android.gms/com.google.android.gms.gcm.HeartbeatAlarm$ConnectionInfoPersistService'
-pm enable 'com.google.android.gms/com.google.android.gms.chimera.PersistentIntentOperationService'
+#pm enable 'com.google.android.gms/.update.SystemUpdateService'
+#pm enable 'com.google.android.gms/com.google.android.gms.analytics.service.AnalyticsService'
+#pm enable 'com.google.android.gms/com.google.android.gms.analytics.AnalyticsService'
+#pm enable 'com.google.android.gms/com.google.android.gms.analytics.AnalyticsTaskService'
+#pm enable 'com.google.android.gms/com.google.android.gms.measurement.AppMeasurementJobService'
+#pm enable 'com.google.android.syncadapters.contacts/com.google.android.gms.analytics.AnalyticsJobService'
+#pm enable 'com.google.android.syncadapters.contacts/com.google.android.gms.analytics.AnalyticsService'
+#pm enable 'com.google.android.gms/com.google.android.gms.gcm.HeartbeatAlarm$ConnectionInfoPersistService'
+#pm enable 'com.google.android.gms/com.google.android.gms.chimera.PersistentIntentOperationService'
 pm disable 'com.google.android.gsf/.update.SystemUpdateService'
 pm disable 'com.android.vending/com.google.android.gms.measurement.AppMeasurementReceiver'
 pm disable 'com.android.vending/com.google.firebase.iid.FirebaseInstanceIdInternalReceiver'

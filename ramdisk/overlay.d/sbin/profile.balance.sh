@@ -1,5 +1,10 @@
 #!/system/bin/sh
 
+# Thermals
+chmod 664 /sys/class/thermal/thermal_message/sconfig
+echo 10 > /sys/class/thermal/thermal_message/sconfig
+chmod 644 /sys/class/thermal/thermal_message/sconfig
+
 # SILVER Cluster
 echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
 echo "300000" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
